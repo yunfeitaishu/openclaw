@@ -75,6 +75,8 @@ Docs: https://docs.openclaw.ai
 - OpenShell/mirror sync: constrain mirror sync to managed roots only so user-added shell roots are no longer overwritten or removed during config synchronization. (#58515) Thanks @eleqtrizit.
 - Dotenv/workspace overrides: block workspace `.env` files from overriding `OPENCLAW_PINNED_PYTHON` and `OPENCLAW_PINNED_WRITE_PYTHON` so trusted helper interpreters cannot be redirected by repo-local env injection. (#58473) Thanks @eleqtrizit.
 - Plugins/install: accept JSON5 syntax in `openclaw.plugin.json` and bundle `plugin.json` manifests during install/validation, so third-party plugins with trailing commas, comments, or unquoted keys no longer fail to install. (#59084) Thanks @singleGanghood.
+- Zalo/webhook replay: scope replay dedupe key by chat and sender so reused message IDs across different chats or senders no longer collide, and harden metadata reads for partially missing payloads. (#58444)
+- Telegram/native commands: clean up metadata-driven progress placeholders when replies fall back, edits fail, or local exec approval prompts are suppressed. (#59300) Thanks @jalehman.
 
 ## 2026.4.1-beta.1
 
@@ -96,7 +98,6 @@ Docs: https://docs.openclaw.ai
 - Matrix/streaming: preserve ordered block flushes before tool, message, and agent boundaries, add explicit `channels.matrix.blockStreaming` opt-in so Matrix `streaming: "off"` stays final-only by default, and move MiniMax plain-text final handling into the MiniMax provider runtime instead of the shared core heuristic. (#59266) thanks @gumadeiras
 - Agents/compaction: resolve compaction wait before final reply/channel flush completion so slow end-of-run delivery drains no longer delay compaction completion. (#59308) thanks @gumadeiras
 - Exec approvals: align approval UX, effective-policy reporting, and `allow-always` availability with the host policy so CLI, doctor, and approval surfaces explain the real host-effective decision path. (#59283) Thanks @gumadeiras.
-- Telegram/native commands: clean up metadata-driven progress placeholders when replies fall back, edits fail, or local exec approval prompts are suppressed. (#59300) Thanks @jalehman.
 
 ## 2026.4.2
 
